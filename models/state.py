@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" the class State Module that inherits from BaseModel and Base
-for HBNB project"""
+""" holds class State"""
 import models
 from models.base_model import BaseModel, Base
 from models.city import City
@@ -11,11 +10,7 @@ from sqlalchemy.orm import relationship
 
 
 class State(BaseModel, Base):
-    """a class that represents the name of the state
-    Public class attributes:
-        name: string - state name
-        cities: relationship - City and state
-    """
+    """Representation of state """
     if models.storage_t == "db":
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
@@ -24,13 +19,13 @@ class State(BaseModel, Base):
         name = ""
 
     def __init__(self, *args, **kwargs):
-        """initializes state using args and kwargs"""
+        """initializes state"""
         super().__init__(*args, **kwargs)
 
     if models.storage_t != "db":
         @property
         def cities(self):
-            """list of city instances related to the state using getter"""
+            """getter for list of city instances related to the state"""
             city_list = []
             all_cities = models.storage.all(City)
             for city in all_cities.values():
