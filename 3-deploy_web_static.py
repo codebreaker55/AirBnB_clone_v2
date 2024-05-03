@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Fabric script based on the file 2-do_deploy_web_static.py that creates and
-distributes an archive to the web servers
+a Fabric script (based on the file 2-do_deploy_web_static.py) that creates,
+and distributes an archive to your web servers, using the function deploy
 
 execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 """
@@ -9,11 +9,11 @@ execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
-env.hosts = ['54.160.77.90', '10.25.190.21']
+env.hosts = ['34.232.53.163', '100.26.171.113']
 
 
 def do_pack():
-    """generates a tgz archive"""
+    """function and store the path of the created archive"""
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if isdir("versions") is False:
@@ -26,7 +26,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """distributes an archive to the web servers"""
+    """function, using the new path of the new archive"""
     if exists(archive_path) is False:
         return False
     try:
