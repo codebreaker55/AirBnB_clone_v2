@@ -9,7 +9,6 @@ execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
-import os
 env.hosts = ['100.26.171.113', '34.232.53.163']
 
 
@@ -31,7 +30,7 @@ def do_deploy(archive_path):
     if exists(archive_path) is False:
         return False
     try:
-        file_n = os.path.basename(archive_path)
+        file_n = archive_path.split("/")[-1]
         no_ext = file_n.split(".")[0]
         path = "/data/web_static/releases/"
         put(archive_path, '/tmp/')
