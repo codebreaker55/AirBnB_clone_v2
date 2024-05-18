@@ -47,7 +47,7 @@ def python_is_cool(text='is cool'):
     """
     web application must be listening on 0.0.0.0, port 5000
     Routes:
-    /python/<text>: display “Python ”, followed by the value of the, 
+    /python/<text>: display “Python ”, followed by the value of the,
     text variable(replace underscore _ symbols with a space),
     The default value of text is “is cool”
     using the option strict_slashes=False in your route definition
