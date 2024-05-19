@@ -20,7 +20,7 @@ def states_list():
     by name (A->Z) tip
     LI tag: description of one State: <state.id>: <B><state.name></B>display,
     """
-    states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
+    states = storage.all("State")
     return render_template('7-states_list.html', states=states)
 
 
